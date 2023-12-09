@@ -24,3 +24,4 @@ Route::get('/', function () {
     }
 });
 Route::get('/main', [MainController::class, 'index']);
+Route::get('/users', [MainController::class, 'users']);
