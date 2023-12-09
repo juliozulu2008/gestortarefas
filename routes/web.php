@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    try {
+        DB::connection()->getPdo();
+        echo "Conectado!!!" . DB::connection()->getDatabaseName();
+    } catch (\Exception $e) {
+        die("Não foi possivel Conectar oa banco de Dados" . $e->getMessage());
+    }
 });
+Route::get('/main', [MainController::class, 'index']);
